@@ -1,0 +1,6 @@
+/* Custom Login Styles */
+ 
+body.login h1 a { background: url(../images/logo.png) center center no-repeat; height: 125px; width: 295px; padding: 0; margin-bottom: 20px; }
+html { background: url(../images/main-bg.jpg) center center #fff; }
+body.login { margin-top: -20px; background: none; }
+.login #nav a, .login #backtoblog a { color: #000 !important; text-shadow: 0 1px 1px #fff; }
