@@ -76,11 +76,8 @@ add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 // Enqueue Styles & Scripts
 if(!is_admin()) {
   function load_styles_and_scripts() {
-  
-    wp_deregister_script( 'jquery' );
     
     wp_register_script( 'modernizr', get_template_directory_uri() . '/js/vendor/modernizr-2.6.2.min.js', false );
-    wp_register_script( 'jquery', get_template_directory_uri() . '/js/vendor/jquery-1.10.2.min.js', false );
     wp_register_script( 'owl', get_template_directory_uri() . '/js/vendor/owl-carousel-2/owl.carousel.min.js', array('jquery'), '1.0', false );
     wp_register_script( 'main', get_template_directory_uri() . '/js/main.min.js', array('jquery'), '1.0', false );
       
