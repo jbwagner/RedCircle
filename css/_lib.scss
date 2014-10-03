@@ -69,16 +69,6 @@
     background-position: left bottom;
   }
 }
-@mixin medium-screen {
-  @media only screen and (max-width: $mediumBreakpoint) {
-    @content;
-  }
-}
-@mixin small-screen {
-  @media only screen and (max-width: $smallBreakpoint) {
-    @content;
-  }
-}
 @mixin print {
   @media print {
     @content;
