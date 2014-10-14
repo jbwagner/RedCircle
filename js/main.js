@@ -66,7 +66,6 @@ function navMenus() {
 	$('.menu-item-has-children > a').click(function(e){ // Any menu item with a sub-menu on click...
   	e.preventDefault();  	
   	$(this).siblings('.sub-menu').fadeToggle(100);
-  	subMenuSize($(this).siblings('.sub-menu'));
   	
   	// if we click to open a submenu and there is another menu already open, close the old one
   	$(this).parent().siblings('.menu-item-has-children.has-open').each(function(){
@@ -97,12 +96,6 @@ function navMenus() {
   	$('#primary-navigation .menu').fadeToggle(100);
   	$(this).toggleClass('has-open');
 	});
-}
-
-function subMenuSize(element) {
-  //console.log(element.height());
-  var offset = -element.height()/2 - parseFloat(element.css('padding-top'), 10);
-  element.css('margin-top', offset);
 }
 
 function formBlanks() {
