@@ -122,3 +122,5 @@ function address_shortcode() {
   return ob_get_clean();
 }
 add_shortcode('address', 'address_shortcode');
+
+?>
