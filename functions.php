@@ -52,12 +52,12 @@ function custom_login() {
 add_action('login_head', 'custom_login');
 // Change logo url
 function change_wp_login_url() { 
-  echo bloginfo('url'); 
+  return get_site_url(); 
 } 
 add_filter('login_headerurl', 'change_wp_login_url');
 // Change logo title
 function change_wp_login_title() { 
-  echo 'Powered by ' . get_option('blogname'); 
+  return 'Powered by ' . get_option('blogname'); 
 } 
 add_filter('login_headertitle', 'change_wp_login_title');
 
