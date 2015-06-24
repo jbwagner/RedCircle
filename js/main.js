@@ -76,19 +76,6 @@ function navMenus() {
   	// mark the parent as having an open menu
   	$(this).parent().toggleClass('has-open');
 	});
-	// Any click outside of nav, close dropdowns
-	$(document).click(function(e){
-  	if ( $(e.target).parents().index($('#primary-navigation')) == -1 && $(e.target).parents().index($('#mobile-menu-button')) == -1) {
-  	  if ( $('.has-open').length > 0 ) {
-    	  $('.menu-item-has-children.has-open .sub-menu').fadeOut(100).parent('.has-open').removeClass('has-open');
-      }
-      var el = $('#mobile-menu-button');
-      if ( el.hasClass('has-open') ) {
-        $('ul#menu-primary-navigation').fadeOut(100);
-        el.removeClass('has-open');
-      }
-  	}
-	});
 	
 	// Mobile Nav Dropdown
 	$('#mobile-menu-button').click(function(e){
