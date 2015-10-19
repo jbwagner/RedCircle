@@ -9,7 +9,15 @@ var uglify     = require('gulp-uglify');
 var rename     = require('gulp-rename');
 var prefix     = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
-var livereload = require('gulp-livereload');
+var browserSync = require('browser-sync').create();
+
+// set up browser-sync
+gulp.task('browser-sync', function(){
+  browserSync.init({
+    proxy: 'site.dev',
+    notify: false
+  });
+});
 
 // Lint Task
 gulp.task('lint', function() {
@@ -22,12 +30,12 @@ gulp.task('lint', function() {
 gulp.task('sass', function() {
     return sass('css/style.scss', { sourcemap: true, style: 'compact' })
         .on('error', function (err) {
-            console.error('Error!', err.message);
+          console.error('Error!', err.message);
         })
         .pipe(prefix("> 1%", "last 2 versions", "ie > 8"))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('.'))
-        .pipe(livereload());
+        .pipe(browserSync.stream());
 });
 
 // Concatenate & Minify JS
@@ -36,7 +44,7 @@ gulp.task('scripts', function() {
         .pipe(rename('main.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('js'))
-        .pipe(livereload());
+        .pipe(browserSync.stream());
 });
 
 // PHP Autorefresh
@@ -45,13 +53,14 @@ gulp.task('refresh', function() {
         .pipe(livereload());
 });
 
+gulp.task('scripts-watch', ['lint', 'scripts'], browserSync.reload);
+
 // Watch Files For Changes
 gulp.task('watch', function() {
-    livereload.listen();
-    gulp.watch('js/main.js', ['lint', 'scripts']);
+    gulp.watch('js/main.js', ['scripts-watch']);
     gulp.watch('css/*.{scss,sass}', ['sass']);
-    gulp.watch('*.php', ['refresh']);
+    gulp.watch('**/*.php', browserSync.reload);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'watch']);
+gulp.task('default', ['browser-sync', 'sass', 'scripts-watch', 'watch']);
