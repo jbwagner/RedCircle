@@ -50,15 +50,26 @@ function custom_login() {
   echo '<link rel="stylesheet" type="text/css" href="'.get_bloginfo('template_directory').'/css/custom-login.css" />';
 }
 add_action('login_head', 'custom_login');
+
 // Change logo url
 function change_wp_login_url() {
   echo bloginfo('url');
 }
 add_filter('login_headerurl', 'change_wp_login_url');
+
 // Change logo title
 function change_wp_login_title() {
   echo 'Powered by ' . get_option('blogname');
 }
+function change_wp_login_url() { 
+  return get_site_url(); 
+} 
+add_filter('login_headerurl', 'change_wp_login_url');
+
+// Change logo title
+function change_wp_login_title() { 
+  return 'Powered by ' . get_option('blogname'); 
+} 
 add_filter('login_headertitle', 'change_wp_login_title');
 
 // Add support for Featured Images
@@ -78,6 +89,9 @@ if(!is_admin()) {
   function load_styles_and_scripts() {
 
     wp_register_script( 'modernizr', get_template_directory_uri() . '/js/vendor/modernizr-2.6.2.min.js', false );
+   
+    wp_register_script( 'modernizr', get_template_directory_uri() . '/js/vendor/modernizr-2.8.3.min.js', false );
+
     wp_register_script( 'owl', get_template_directory_uri() . '/js/vendor/owl-carousel-2/owl.carousel.min.js', array('jquery'), '1.0', false );
     wp_register_script( 'main', get_template_directory_uri() . '/js/main.min.js', array('jquery'), '1.0', false );
 

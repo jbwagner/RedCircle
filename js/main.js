@@ -66,7 +66,6 @@ function navMenus() {
 	$('.menu-item-has-children > a').click(function(e){ // Any menu item with a sub-menu on click...
   	e.preventDefault();  	
   	$(this).siblings('.sub-menu').fadeToggle(100);
-  	subMenuSize($(this).siblings('.sub-menu'));
   	
   	// if we click to open a submenu and there is another menu already open, close the old one
   	$(this).parent().siblings('.menu-item-has-children.has-open').each(function(){
@@ -77,19 +76,6 @@ function navMenus() {
   	// mark the parent as having an open menu
   	$(this).parent().toggleClass('has-open');
 	});
-	// Any click outside of nav, close dropdowns
-	$(document).click(function(e){
-  	if ( $(e.target).parents().index($('#primary-navigation')) == -1 && $(e.target).parents().index($('#mobile-menu-button')) == -1) {
-  	  if ( $('.has-open').length > 0 ) {
-    	  $('.menu-item-has-children.has-open .sub-menu').fadeOut(100).parent('.has-open').removeClass('has-open');
-      }
-      var el = $('#mobile-menu-button');
-      if ( el.hasClass('has-open') ) {
-        $('ul#menu-primary-navigation').fadeOut(100);
-        el.removeClass('has-open');
-      }
-  	}
-	});
 	
 	// Mobile Nav Dropdown
 	$('#mobile-menu-button').click(function(e){
@@ -97,12 +83,6 @@ function navMenus() {
   	$('#primary-navigation .menu').fadeToggle(100);
   	$(this).toggleClass('has-open');
 	});
-}
-
-function subMenuSize(element) {
-  //console.log(element.height());
-  var offset = -element.height()/2 - parseFloat(element.css('padding-top'), 10);
-  element.css('margin-top', offset);
 }
 
 function formBlanks() {
