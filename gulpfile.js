@@ -32,7 +32,7 @@ gulp.task('sass', function() {
         .on('error', function (err) {
           console.error('Error!', err.message);
         })
-        .pipe(prefix("> 1%", "last 2 versions", "ie > 8"))
+        .pipe(prefix(["> 1%", "last 2 versions", "ie > 8", "Safari > 6"]))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('.'))
         .pipe(browserSync.stream());
